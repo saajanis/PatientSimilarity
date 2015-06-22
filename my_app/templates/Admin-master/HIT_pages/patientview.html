@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+{% load staticfiles %}
+
+  <head>
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Bootstrap 3.3.2 -->
+    <link href="{% static "static/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Morris chart -->
+    <link href="{% static "static/plugins/morris/morris.css" %}" rel="stylesheet" type="text/css" />
+    <!-- jvectormap -->
+    <link href="{% static "static/plugins/jvectormap/jquery-jvectormap-1.2.2.css" %}" rel="stylesheet" type="text/css" />
+    <!-- Daterange picker -->
+    <link href="{% static "static/plugins/daterangepicker/daterangepicker-bs3.css" %}" rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="{% static "static/dist/css/AdminLTE.min.css" %}" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="{% static "static/dist/css/skins/_all-skins.min.css" %}" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="skin-blue">
+    <div class="wrapper">
+      
+      <header class="main-header">
+        <!-- Logo -->
+        <a href="index2.html" class="logo"><b>Admin</b>LTE</a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- User Account: style can be found in dropdown.less -->
+              <li class="dropdown user user-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <img src="{% static "static/dist/img/physician.jpg" %}" class="user-image" alt="User Image"/>
+                  <span class="hidden-xs">Dr. Alexander Pierce</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="{% static "static/dist/img/physician.jpg" %}" class="img-circle" alt="User Image" />
+                    <p>
+                      Alexander Pierce - MD
+                      <small>Member since Nov. 2012</small>
+                    </p>
+                  </li>
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-left">
+                      <a href="#" class="btn btn-default btn-flat">Home</a>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="{% static "static/dist/img/patient.jpg" %}" class="img-circle" alt="User Image" />
+            </div>
+            <div class="pull-left info">
+              <p>{{ patient_dict.name }}</p>
+
+              <!-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> -->
+            </div>
+          </div>
+          <!-- search form -->
+          <!-- <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search..."/>
+              <span class="input-group-btn">
+                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form> -->
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="index.html"><i class="fa fa-circle-o"></i> Active Problem List</a></li>
+                <li><a href="index.html"><i class="fa fa-circle-o"></i> Medications</a></li>
+                <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Allergies</a></li>
+              </ul>
+            </li>
+            
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <div class="callout callout-info">
+          <h4>Patient Summary!</h4>
+          <p>This space could provide notes from previous PCP or Patient Demographic Details or Reason for Visit</p>
+        </div>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+          <h1>
+            Medication History
+            <!-- <small>Chronic</small> -->
+          </h1>
+          <!-- <ol class="breadcrumb"> -->
+            <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li> -->
+            <!-- <li class="active">Dashboard</li> -->
+          <!-- </ol> -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+          
+          
+          
+          
+          {% for medicationMapping in patient_dict.medicationMappingList %} 
+          
+          <div class="row"  style="width: 100%; border: 0; padding: 0px; margin: 0;">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{ medicationMapping.0 }}</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <div class="btn-group">
+                      <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      
+                      <div class="chart-responsive">
+                        <!-- Sales Chart Canvas -->
+                        <canvas id="{{ medicationMapping.1 }}" height="200"></canvas>
+                      </div><!-- /.chart-responsive -->
+                    </div><!-- /.col -->
+                    <div class="col-md-4">
+                      <p class="text-center">
+                        <strong>Active Medication</strong>
+                      </p>
+                      <div class="progress-group">
+                        <span class="progress-text">{{ medicationMapping.0 }}</span>
+                        <span class="progress-number"><b>Pills Consumed: 160</b>/200</span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- ./box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+		 {%  endfor %}
+
+		 <section class="content-header">
+          <h1>
+            Observation History
+            <!-- <small>Chronic</small> -->
+          </h1>
+          <!-- <ol class="breadcrumb"> -->
+            <!-- <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li> -->
+            <!-- <li class="active">Dashboard</li> -->
+          <!-- </ol> -->
+        </section>
+
+
+         {% for observationMapping in patient_dict.observationMappingList %} 
+          
+          <div class="row"  style="width: 100%; border: 0; padding: 0px; margin: 0;">
+            <div class="col-md-12">
+              <div class="box">
+                <div class="box-header with-border">
+                  <h3 class="box-title">{{ observationMapping.0 }}</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <div class="btn-group">
+                      <button class="btn btn-box-tool dropdown-toggle" data-toggle="dropdown"><i class="fa fa-wrench"></i></button>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </div>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-md-8">
+                      
+                      <div class="chart-responsive">
+                        <!-- Sales Chart Canvas -->
+                        <canvas id="{{ observationMapping.1 }}" height="200"></canvas>
+                      </div><!-- /.chart-responsive -->
+                    </div><!-- /.col -->
+                    <div class="col-md-4">
+                      <p class="text-center">
+                        <strong>Active Observation</strong>
+                      </p>
+                      <div class="progress-group">
+                        <span class="progress-text">{{ observationMapping.0 }}</span>
+                        <!--span class="progress-number"><b>160</b>/200<!--/span>
+                        <div class="progress sm">
+                          <div class="progress-bar progress-bar-aqua" style="width: 80%"></div>
+                        </div>
+                      </div><!-- /.progress-group -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div><!-- ./box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+		 {%  endfor %}
+
+
+          
+
+
+          <div class="row">
+            <div class="col-md-8">
+              <!-- TABLE: LATEST ORDERS -->
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Vitals</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <div class="table-responsive">
+                    <table class="table no-margin">
+                      <thead>
+                        <tr>
+                          <th>Measurement</th>
+                          <th>Value</th>
+                          <th>Status</th>
+                          <th>Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        
+                     {% for observationMapping in patient_dict.observationMappingList %} 
+                        <tr>
+                          <td><a href="pages/examples/invoice.html">{{ observationMapping.0 }}</a></td>
+                          <td>{{ observationMapping.2 }}</td>
+                          <td><span class="label label-success">Normal</span></td>
+                          <td><div class="sparkbar" data-color="#00c0ef" data-height="20">{{ observationMapping.3 }}</div></td>
+                        </tr>
+		 			{%  endfor %}  
+		 			
+		 			
+                      </tbody>
+                    </table>
+                  </div><!-- /.table-responsive -->
+                </div><!-- /.box-body -->
+                
+                
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-4">
+              <!-- PRODUCT LIST -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Active Conditions</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="products-list product-list-in-box">
+                    
+                    
+                   {% for condition in patient_dict.conditionsList %} 
+                   
+                    <li class="item">
+                      
+                      <div class="product-info">
+                        <a href="javascript::;" class="product-title">{{ condition }} <span class="label label-warning pull-right">Mild</span></a>
+                        
+                      </div>
+                    </li><!-- /.item -->
+                  
+                   {% endfor %} 
+                    
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+      <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 2.0
+        </div>
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+      </footer>
+
+    </div><!-- ./wrapper -->
+
+    <!-- jQuery 2.1.3 -->
+    <script src="{% static "static/plugins/jQuery/jQuery-2.1.3.min.js" %}"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="{% static "static/bootstrap/js/bootstrap.min.js" %}" type="text/javascript"></script>
+    <!-- FastClick -->
+    <script src="{% static "static/plugins/fastclick/fastclick.min.js" %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static "static/dist/js/app.min.js" %}" type="text/javascript"></script>
+    <!-- Sparkline -->
+    <script src="{% static "static/plugins/sparkline/jquery.sparkline.min.js" %}" type="text/javascript"></script>
+    <!-- jvectormap -->
+    <script src="{% static "static/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js" %}" type="text/javascript"></script>
+    <script src="{% static "static/plugins/jvectormap/jquery-jvectormap-world-mill-en.js" %}" type="text/javascript"></script>
+    <!-- daterangepicker -->
+    <script src="{% static "static/plugins/daterangepicker/daterangepicker.js" %}" type="text/javascript"></script>
+    <!-- datepicker -->
+    <script src="{% static "static/plugins/datepicker/bootstrap-datepicker.js" %}" type="text/javascript"></script>
+    <!-- iCheck -->
+    <script src="{% static "static/plugins/iCheck/icheck.min.js" %}" type="text/javascript"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="{% static "static/plugins/slimScroll/jquery.slimscroll.min.js" %}" type="text/javascript"></script>
+    <!-- ChartJS 1.0.1 -->
+    <script src="{% static "static/plugins/chartjs/Chart.min.js" %}" type="text/javascript"></script>
+
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- <script src="{% static "static/dist/js/pages/dashboard.js" %}" type="text/javascript"></script> -->
+    <script src="{% static "static/dist/js/pages/tempJSDashboard/"%}dashboard2{{ patient_dict.randomNo }}.js" type="text/javascript"></script>
+
+    <!-- AdminLTE for demo purposes -->
+    <script src="{% static "/dist/js/demo.js" %}" type="text/javascript"></script>
+  </body>
+</html>
+
